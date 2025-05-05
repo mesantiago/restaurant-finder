@@ -4,6 +4,9 @@ Introduction
 A sample program that uses the following technologies:
 - [ ] nodejs
 - [ ] typescript
+Has integration to the following
+- [ ] openai
+- [ ] foursquare
 
 Installation
 ------------
@@ -21,6 +24,14 @@ Setup and run the server app
 
 ```
 yarn install
+```
+- Install the sdk node modules
+
+```
+cd sdks/apis/fsq-developers
+yarn install
+cd ../../..
+
 ```
 - Setup enviroment variables by copying .env.sample to new file .env
 

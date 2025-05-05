@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@api/fsq-developers": "file:sdks/apis/fsq-developers",
     "express": "^5.1.0",
     "openai": "^4.97.0"
   },

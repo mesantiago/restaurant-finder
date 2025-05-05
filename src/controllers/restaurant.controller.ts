@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import * as openai from '../connectors/openai';
+import * as foursquare from '../connectors/foursquare';
 
 export const search = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -11,8 +12,8 @@ export const search = async (req: Request, res: Response, next: NextFunction) =>
       return;
     }
     const parameters = await openai.parseRequest(message);
-    // TODO: search for restaurants
-    res.json(parameters);
+    const restaurants = await foursquare.findDiningPlaces(parameters);
+    res.json(restaurants);
   } catch (error) {
     next(error);
   }
