@@ -1,10 +1,18 @@
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
+import config from './config';
+
 import restaurantRoutes from './routes/restaurant';
 import { errorHandler } from './middlewares/errorHandler';
 
 const app = express();
 
+app.use(
+  cors({
+    origin: config.clientUrl
+  })
+);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public/')));
 
