@@ -21,19 +21,33 @@ function HomeScreen () {
       });
   };
 
+  const toDetailRow = (name, value) => value ? (
+    <View style={styles.detail}>
+      <View style={styles.detailName}>{name}:</View>
+      <View style={styles.detailValue}>{value}</View>
+    </View>
+  ) : null;
+
   const restaurantList = (restaurants || [])
     .map((restaurant) => (
       <View style={styles.restaurantCard}>
         <Text style={styles.restaurantIsOpen}>Open now: {restaurant.isOpen}</Text>
-        <Text style={styles.restaurantName}>{restaurant.name}</Text>
+        <Text style={styles.restaurantName}>{restaurant.name}{restaurant.rating ? (<Text> - <Text style={styles.restaurantRating}>{restaurant.rating} ★</Text></Text>) : null}</Text>
+        <View style={styles.restaurantDetails}>
+          {toDetailRow('Opening Hours', restaurant.hours)}
+          {toDetailRow('Address', restaurant.address)}
+          {toDetailRow('Email', restaurant.email)}
+          {toDetailRow('Tel', restaurant.tel)}
+          {toDetailRow('Price Classification', restaurant.priceClassification)}
+          {toDetailRow('Description', restaurant.description)}
+        </View>
         <View style={styles.restaurantCategories}>
           {restaurant.categories.map(category => (
             <View style={styles.restaurantCategory}>
-              <Text>{category}</Text>
+              {category}
             </View>
           ))}
         </View>
-        <Text style={styles.restaurantAddress}>Address: {restaurant.address}</Text>
       </View>
     ));
 
@@ -67,9 +81,9 @@ const styles = StyleSheet.create({
   error: {
     color: colors.error
   },
-  restaurantList: {
+  restaurantsList: {
     width: '500px',
-    maxWidth: '100%'
+    maxWidth: '80%'
   },
   restaurantCard: {
     padding: 10,
@@ -89,15 +103,33 @@ const styles = StyleSheet.create({
     padding: '5px',
     marginRight: '5px',
     backgroundColor: colors.secondaryButton,
+    fontSize: '9pt',
+    borderRadius: '5px'
   },
   restaurantIsOpen: {
-    fontSize: '8pt',
+    fontSize: '9pt',
     fontWeight: 'bold',
     color: colors.defaultButton,
     textAlign: 'right'
   },
-  restaurantAddress: {
+  restaurantDetails: {
     marginTop: '20px',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    color: 'white',
+    fontSize: '9pt'
+  },
+  restaurantRating: {
+    color: colors.tertiaryButton
+  },
+  detail: {
+    flexDirection: 'row',
+    marginBottom: '10px'
+  },
+  detailName: {
+    flex: 0.3,
+    fontWeight: 'bold'
+  },
+  detailValue: {
+    flex: 0.7
   }
 });
