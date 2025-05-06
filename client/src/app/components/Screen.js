@@ -1,7 +1,6 @@
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import * as PropTypes from 'prop-types';
 
-import colors from '../config/colors';
 import Footer from './Footer';
 
 export default function Screen ({ children }) {
